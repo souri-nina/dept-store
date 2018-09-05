@@ -7,16 +7,15 @@ class ItemsController < ApplicationController
   end
 
   def show
-    # render :show
   end
 
   def new
-    @dept = @dept.items.new
+    @item = @dept.items.new
     render partial: 'form'
   end
 
   def create
-    @dept = @dept.items.new(item_params)
+    @item = @dept.items.new(item_params)
 
     if @item.save
       redirect_to [@dept, @item]
@@ -53,7 +52,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name)
+    params.require(:item).permit(:name, :price, :details, :availability)
   end
 end
 
